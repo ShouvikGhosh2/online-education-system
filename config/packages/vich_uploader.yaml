@@ -1,0 +1,20 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        avatars:
+            uri_prefix: '%app.path.avatar_images%'
+            upload_destination: '%kernel.project_dir%/public%app.path.avatar_images%'
+            delete_on_update:   true
+            delete_on_remove:   true
+        video_courses:
+            uri_prefix: '%app.path.video_path_courses%'
+            upload_destination: '%kernel.project_dir%/public%app.path.video_path_courses%'
+            delete_on_update:   true
+            delete_on_remove:   true
+        video_lessons:
+            uri_prefix: '%kernel.project_dir%/public%app.path.video_path_lessons%'
+            upload_destination: '%kernel.project_dir%/public%app.path.video_path_lessons%'
+
+            delete_on_update:   true
+            delete_on_remove:   true
