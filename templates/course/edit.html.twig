@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit {{ course.name }}{% endblock %}
+
+{% block body %}
+    <!--================Home Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="banner_content text-center">
+                            <h2>Редактирование курса {{ course.name }}</h2>
+                            <div class="page_link">
+                                <a href="{{ path('index') }}">Главная</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Home Banner Area =================-->
+    <section class="blog_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    {{ include('/course/_course_left_sidebar.html.twig') }}
+                </div>
+                <div class="col-lg-8">
+                    <div class="blog_left_sidebar">
+                        <article class="row blog_item">
+                            <div class="col-md-9">
+                                <div class="blog_post">
+                                    <a href="#" class="btn btn-light right-contents">Редактировать информацию</a>
+                                    <div class="blog_details">
+                                        <h4>{{ course.name }}</h4>
+                                        <p>{{ course.description }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        {% if lessons %}
+                            {% for lesson in lessons %}
+                                <article class="row blog_item">
+                                    <div class="col-md-9">
+                                        <div class="blog_post">
+                                            <div class="blog_details">
+                                                <div class="row">
+                                                    <div class="col-md-10">{{ lesson.name }}</div>
+                                                    <div class="col-md-2">
+                                                        <a href="{{ path('edit-lesson', {'id': lesson.id}) }}">
+                                                            <i class="ti-pencil"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            {% endfor %}
+                        {% endif %}
+                        <article class="row blog_item">
+                            <div class="col-md-9">
+                                <div class="blog_post">
+                                    <div class="blog_details">
+                                        {% if not lessons %}
+                                            <p class="text-center warning-text"><em>В курсе пока что нет ни одного
+                                                    урока.<br/>Добавьте свой первый урок в редакторе содержания
+                                                    курса.</em>
+                                            </p>
+                                        {% endif %}
+                                        <div class="list-lessons"></div>
+                                        {{ form_start(lessonForm, { 'attr': {'class': 'contact_form lesson-form-ajax', 'data-url': path('edit-course', {'id': course.id}) }}) }}
+                                        {{ form_row(lessonForm.name, {'attr': {'class': 'form-control', 'id':'lesson_form_name'}}) }}
+                                        <button type="submit" class="btn primary-btn">Добавить урок</button>
+                                       {{ form_end(lessonForm) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ app.user.slug }}{% endblock %}
+
+{% block body %}
+    <!--================Home Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="banner_content text-center">
+                            <h2>{{ app.user.firstName }}!</h2>
+                            <div class="page_link">
+                                <a href="{{ path('index') }}">Главная</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Home Banner Area =================-->
+    <section class="blog_area single-post-area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    {{ include('/user/_users_left_sidebar.html.twig') }}
+                </div>
+                <div class="col-lg-8 posts-list"></div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
